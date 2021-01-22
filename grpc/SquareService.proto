@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package io.github.grpc;
+
+message SquareRequestResponse {
+    int64 number = 1;
+};
+
+service SquareService {
+    rpc squareIt(SquareRequestResponse) returns (SquareRequestResponse);
+}
