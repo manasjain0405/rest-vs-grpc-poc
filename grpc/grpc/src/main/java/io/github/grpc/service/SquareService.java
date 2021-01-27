@@ -1,16 +1,19 @@
 package io.github.grpc.service;
 
 import io.grpc.stub.StreamObserver;
-import io.manasjain0405.grpc.SquareRequestResponse;
+import io.manasjain0405.grpc.SquareRequest;
+import io.manasjain0405.grpc.SquareResponse;
 import io.manasjain0405.grpc.SquareServiceGrpc;
-import org.springframework.stereotype.Service;
 
 public class SquareService extends SquareServiceGrpc.SquareServiceImplBase {
 
     @Override
-    public void squareIt(SquareRequestResponse request, StreamObserver<SquareRequestResponse> responseObserver) {
-        final Long no = request.getNumber();
-        responseObserver.onNext(SquareRequestResponse.newBuilder().setNumber(no*no).build());
+    public void squareIt(SquareRequest request, StreamObserver<SquareResponse> responseObserver) {
+        final int no = request.getNumber();
+        responseObserver.onNext(SquareResponse.newBuilder()
+                .setNumber(no)
+                .setResult(no*no)
+                .build());
         responseObserver.onCompleted();
     }
 }
