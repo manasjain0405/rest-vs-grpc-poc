@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        property = "type")
+        property = "type",
+        visible = false
+)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Car.class, name = "Car"),
         @JsonSubTypes.Type(value = Bus.class, name = "Bus"),
@@ -16,7 +18,8 @@ public abstract class Vehicle{
 
     @JsonProperty("id")
     private int id;
-    @JsonProperty("name")
+
+    @JsonProperty("type")
     private String type;
 
     public Vehicle() {
@@ -42,6 +45,7 @@ public abstract class Vehicle{
     public String getType() {
         return type;
     }
+
 
     public void setType(final String type) {
         this.type = type;

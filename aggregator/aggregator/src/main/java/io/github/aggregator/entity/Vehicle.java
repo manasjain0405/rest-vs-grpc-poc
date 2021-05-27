@@ -1,11 +1,15 @@
 package io.github.aggregator.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        property = "type")
+        property = "type",
+        visible = false,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY
+)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Car.class, name = "Car"),
         @JsonSubTypes.Type(value = Bus.class, name = "Bus"),
@@ -13,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 public abstract class Vehicle{
     private int id;
+
     private String type;
 
     public Vehicle() {

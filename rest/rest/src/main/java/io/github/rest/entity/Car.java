@@ -1,7 +1,5 @@
 package io.github.rest.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Car extends Vehicle{
     private String model;
     private String modelType;
