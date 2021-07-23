@@ -135,10 +135,11 @@ public class SquareService {
         File res = zippingUtils.createZip(lt, "ompressed.zip");
         f1.delete();
         f2.delete();
+        final byte[] fileBts = Files.readAllBytes(Paths.get(res.getName()));
         ResponseEntity<byte[]> ret = ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/zip"))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + res.getName() + "\"")
-                .body(Files.readAllBytes(Paths.get(res.getName())));
+                .body(fileBts);
         res.delete();
         return ret;
     }
