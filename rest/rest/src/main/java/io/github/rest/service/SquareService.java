@@ -1,5 +1,6 @@
 package io.github.rest.service;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.rest.entity.Bus;
 import io.github.rest.entity.Car;
 import io.github.rest.entity.MapTest;
@@ -393,7 +394,12 @@ public class SquareService {
         return Arrays.asList(panColumnNumber, imageStatusColumnNumber);
     }
 
+    @CircuitBreaker(name = "testConfig")
+    public void intentionalExceptionGenerator(final boolean generateException) {
 
-
+        if(generateException) {
+            throw new RuntimeException("This is an intentional exception!");
+        }
+    }
 
 }

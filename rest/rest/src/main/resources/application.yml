@@ -1,0 +1,14 @@
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      testConfig:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 4
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        minimumNumberOfCalls: 10
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold : 60000
